@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 50, 0.4) 0%, rgba(15, 5, 10, 0.95) 100%),
+        linear-gradient(135deg, #2b0510 25%, #150208 25%, #150208 50%, #2b0510 50%, #2b0510 75%, #150208 75%, #150208 100%);
+    background-size: 100% 100%, 40px 40px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 25px 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+legend {
+    color: #333;
+    padding: 0 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 14px;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efek Neon saat diketik */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+    background-color: #000000;
+    color: #00f7ff;
+    border-color: #00f7ff;
+    box-shadow: 0 0 12px #00f7ff, inset 0 0 5px rgba(0, 247, 255, 0.5);
+    text-shadow: 0 0 5px #00f7ff;
+}
+
+.row-group {
+    display: flex;
+    gap: 15px;
+}
+
+.row-group .col {
+    flex: 1;
+}
+
+select option {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.options-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 6px;
+}
+
+.options-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: #3182ce;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.file-upload-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.file-upload-btn {
+    background-color: #e2e8f0;
+    color: #333;
+    padding: 8px 15px;
+    border-right: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.file-upload-btn:hover {
+    background-color: #cbd5e0;
+}
+
+.file-name {
+    padding-left: 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+input[type="file"] {
+    display: none;
+}

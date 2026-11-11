@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran Neon</title>
+    <!-- Menghubungkan CSS Eksternal (jika ada) -->
+    <link
+    
+    <style>
+        /* --- Reset & Base Styles --- */
+        :root {
+            --background-color: #0d1117; /* Hitam kebiruan untuk background */
+            --maroon-glow: #311b24; /* Maroon gelap untuk latar belakang fieldset */
+            --neon-blue: #00f7ff; /* Biru neon utama */
+            --neon-blue-glow: #0081ff; /* Biru yang lebih dalam untuk glow */
+            --text-color: #ffffff; /* Putih untuk teks */
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif; /* Font sans-serif yang modern */
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Tampilan Fieldset Neon --- */
+        fieldset {
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 15px;
+            background-color: var(--maroon-glow); /* Maroon gelap */
+            box-shadow: 0 0 10px var(--neon-blue-glow),
+                        inset 0 0 5px rgba(0, 247, 255, 0.3); /* Glow luar dan dalam */
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* --- Teks Heading & Label Neon --- */
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue-glow); /* Efek glow pada teks */
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: var(--neon-blue);
+            margin-bottom: 8px;
+            text-shadow: 0 0 3px var(--neon-blue-glow);
+        }
+
+        /* --- Styling Input & Select Neon --- */
+        input, select {
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Latar belakang input transparan gelap */
+            border: 1px solid var(--neon-blue);
+            color: var(--text-color);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box; /* Memastikan padding tidak melebarkan input */
+            transition: all 0.3s ease; /* Transisi halus saat fokus */
+        }
+
+        /* Efek glow saat input/select difokuskan */
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Styling opsi dalam dropdown agar serasi */
+        select option {
+            background-color: var(--maroon-glow);
+            color: var(--text-color);
+        }
+
+        /* --- Styling untuk Radio & Checkbox Neon --- */
+        .radio-group, .checkbox-group {
+            margin-bottom: 20px;
+        }
+
+        /* Menata agar label radio/checkbox sejajar */
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        /* Menyembunyikan input radio/checkbox asli */
+        input[type="radio"], input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Membuat radio/checkbox kustom */
+        .custom-radio, .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-blue);
+            margin-right: 10px;
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Bentuk radio bulat */
+        .custom-radio {
+            border-radius: 50%;
+        }
+
+        /* Bentuk kotak untuk checkbox */
+        .custom-checkbox {
+            border-radius: 3px;
+        }
+
+        /* Indikator terpilih (tanda centang/titik) */
+        input[type="radio"]:checked + .custom-radio::after,
+        input[type="checkbox"]:checked + .custom-checkbox::after {
+            content: '';
+            position: absolute;
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 5px var(--neon-blue-glow);
+        }
+
+        /* Titik untuk radio */
+        input[type="radio"]:checked + .custom-radio::after {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+
+        /* Tanda centang untuk checkbox */
+        input[type="checkbox"]:checked + .custom-checkbox::after {
+            width: 12px;
+            height: 6px;
+            border-left: 2px solid var(--text-color);
+            border-bottom: 2px solid var(--text-color);
+            transform: rotate(-45deg);
+            top: 5px;
+            left: 4px;
+        }
+
+        /* Glow pada radio/checkbox kustom saat kursor di atas */
+        .radio-group label:hover .custom-radio,
+        .checkbox-group label:hover .custom-checkbox {
+            box-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* --- Styling File Upload Button --- */
+        /* Menghilangkan input file asli */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Label kustom sebagai tombol unggah */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--maroon-glow);
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-shadow: 0 0 3px var(--neon-blue-glow);
+            box-shadow: 0 0 5px var(--neon-blue-glow);
+            transition: all 0.3s ease;
+        }
+
+        /* Efek glow saat tombol unggah dihover */
+        .custom-file-upload:hover {
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Spasi tambahan */
+        .spacer {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <h2>Form Pendaftaran</h2>
+
+            <!-- User Name -->
+            <label for="username">User name</label>
+            <input type="text" id="username" class="username" value="BBPVP Bekasi">
+
+            <!-- Password -->
+            <label for="password">Password</label>
+            <input type="password" id="password" class="password" placeholder="Masukkan password">
+
+            <!-- Tanggal Lahir -->
+            <label for="tanggal">Tanggal Lahir</label>
+            <input type="date" id="tanggal" class="tanggal">
+
+            <!-- Usia (dengan JavaScript filter) -->
+            <label for="usia">Usia</label>
+            <select id="usia">
+                <option value="">Pilih Usia</option>
+                <option value="15">15 Tahun</option>
+                <option value="16">16 Tahun</option>
+                <option value="17">17 Tahun</option>
+                <option value="18">18 Tahun</option>
+                <option value="19">19 Tahun</option>
+                <option value="20">20 Tahun</option>
+                <option value="21">21 Tahun</option>
+                <option value="22">22 Tahun</option>
+                <option value="23">23 Tahun</option>
+                <option value="24">24 Tahun</option>
+                <option value="25">25 Tahun</option>
+                <option value="26">26 Tahun</option>
+                <option value="27">27 Tahun</option>
+                <option value="28">28 Tahun</option>
+                <option value="29">29 Tahun</option>
+                <option value="30">30 Tahun</option>
+            </select>
+
+            <!-- Email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" class="email" placeholder="Masukkan email">
+
+            <!-- Jenis Kelamin (Radio Kustom) -->
+            <label>Jenis Kelamin</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="gender" value="" checked>
+                    <span class="custom-radio"></span> Belum Memilih
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Laki-laki">
+                    <span class="custom-radio"></span> Laki-laki
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Perempuan">
+                    <span class="custom-radio"></span> Perempuan
+                </label>
+            </div>
+
+            <!-- Asal Daerah -->
+            <label for="daerah">Asal Daerah</label>
+            <select id="daerah">
+                <option value="">Pilih Asal Daerah</option>
+                <option>Jakarta</option>
+                <option>Bekasi</option>
+                <option>Depok</option>
+                <option>Tangerang</option>
+                <option>Bogor</option>
+            </select>
+
+            <!-- Hobi (Checkbox Kustom) -->
+            <label>Hobi</label>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="hobi" value="Membaca">
+                    <span class="custom-checkbox"></span> Membaca
+                </label>
+                <label>
+                    <input type="checkbox" name="hobi" value="Olahraga">
+                    <span class="custom-checkbox"></span> Olahraga
+                </label>
+                <label>
+                    <input type="checkbox" name="hobi" value="Musik">
+                    <span class="custom-checkbox"></span> Musik
+                </label>
+                <label>
+                    <input type="checkbox" name="hobi" value="Traveling">
+                    <span class="custom-checkbox"></span> Traveling
+                </label>
+                <label>
+                    <input type="checkbox" name="hobi" value="Coding">
+                    <span class="custom-checkbox"></span> Coding
+                </label>
+            </div>
+
+            <!-- File Upload (Kustom) -->
+            <label>Foto Profil</label>
+            <label for="foto" class="custom-file-upload">
+                Choos File
+            </label>
+            <input type="file" id="foto" class="file-upload" accept="image/*">
+            <span class="spacer" style="display: block;">No file upload</span>
+
+        </fieldset>
+    </form>
+
+    <script>
+        // JavaScript untuk menangani filter tahun pada dropdown "Usia"
+        const selectUsia = document.getElementById('usia');
+
+        selectUsia.addEventListener('change', function(e) {
+            const selectedText = this.options[this.selectedIndex].text;
+            
+            // Mencari teks yang berakhiran " Tahun" untuk diproses
+            if (selectedText.endsWith(' Tahun')) {
+                const yearLabel = selectedText.replace(' Tahun', '');
+                console.log(`Usia yang dipilih: ${yearLabel}`);
+                
+                // Di sini Anda dapat menambahkan logika untuk menggunakan rentang tahun
+                // Berdasarkan label yang dipilih.
+                // Contoh:
+                if (parseInt(yearLabel) >= 15 && parseInt(yearLabel) <= 20) {
+                    console.log('Menampilkan filter tahun: 2004 - 2009');
+                } else if (parseInt(yearLabel) > 20 && parseInt(yearLabel) <= 25) {
+                    console.log('Menampilkan filter tahun: 1999 - 2004');
+                } else if (parseInt(yearLabel) > 25 && parseInt(yearLabel) <= 30) {
+                    console.log('Menampilkan filter tahun: 1994 - 1999');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
